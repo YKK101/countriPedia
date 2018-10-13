@@ -1,6 +1,6 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Background } from '@components'
 
-const Main = () => <View style={{ backgroundColor: 'pink', flex: 1 }} />
+const Main = () => <Background />
 
 export default Main

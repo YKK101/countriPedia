@@ -1,6 +1,16 @@
-import React from 'react'
-import { Main } from './screens'
+import React, { PureComponent } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { Main } from '@screens'
+import theme from '@constants/theme'
 
-const App = () => <Main />
+class App extends PureComponent {
+  render() {
+    return (
+      <ThemeProvider theme={theme.lilac}>
+        <Main />
+      </ThemeProvider>
+    )
+  }
+}
 
 export default App
