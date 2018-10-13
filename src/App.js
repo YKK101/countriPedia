@@ -1,14 +1,18 @@
 import React, { PureComponent } from 'react'
+import { ApolloProvider } from 'react-apollo'
 import { ThemeProvider } from 'styled-components'
-import { Main } from '@screens'
+import { Countries } from '@screens'
+import countryGQL from '@api/countryGQL'
 import theme from '@constants/theme'
 
 class App extends PureComponent {
   render() {
     return (
-      <ThemeProvider theme={theme.lilac}>
-        <Main />
-      </ThemeProvider>
+      <ApolloProvider client={countryGQL}>
+        <ThemeProvider theme={theme.lilac}>
+          <Countries />
+        </ThemeProvider>
+      </ApolloProvider>
     )
   }
 }
