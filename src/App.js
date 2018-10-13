@@ -1,6 +1,6 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Main } from './screens'
 
-const App = () => <View style={{ backgroundColor: 'pink', flex: 1 }} />
+const App = () => <Main />
 
 export default App
