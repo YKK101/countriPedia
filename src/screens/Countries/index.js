@@ -1,6 +1,7 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import {
   FlatList,
+  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -14,6 +15,7 @@ import {
   Error,
   Loading,
 } from '@components'
+import strings from '@constants/strings'
 
 const query = gql`
 {
@@ -37,11 +39,14 @@ class Countries extends PureComponent {
 
   renderCountryItem = ({ item }) => {
     return (
-      <List.Item
-        title={item.native}
-        description={item.name}
-        left={() => this.renderCountryFlag(item.flagCode)}
-      />
+      <Fragment>
+        <List.Item
+          title={item.native}
+          description={item.name}
+          left={() => this.renderCountryFlag(item.flagCode)}
+        />
+        <SafeAreaView />
+      </Fragment>
     )
   }
 
@@ -59,17 +64,25 @@ class Countries extends PureComponent {
   }
 }
 
-const CountriesContainer = () => (
-  <Query query={query}>
-    { ({ loading, error, data }) => {
-      if (loading) { return <Loading /> }
-      if (error) { return <Error /> }
-      if (data.countries) { return <Countries data={data.countries} /> }
+class CountriesContainer extends PureComponent {
+  static navigationOptions = {
+    title: strings.countriesTitle
+  }
+  
+  render() {
+    return (
+      <Query query={query}>
+        { ({ loading, error, data }) => {
+          if (loading) { return <Loading /> }
+          if (error) { return <Error /> }
+          if (data.countries) { return <Countries data={data.countries} /> }
 
-      return <Error />
-    }}
-  </Query>
-)
+          return <Error />
+        }}
+      </Query>
+    )
+  }
+}
 
 Countries.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({

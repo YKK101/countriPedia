@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import { ApolloProvider } from 'react-apollo'
 import { ThemeProvider } from 'styled-components'
 import { Provider as PaperProvider } from 'react-native-paper'
-import { Countries } from '@screens'
 import countryGQL from '@api/countryGQL'
 import theme from '@constants/theme'
+import MainNavigator from './navigator'
 
 class App extends PureComponent {
   render() {
@@ -12,7 +12,7 @@ class App extends PureComponent {
       <ApolloProvider client={countryGQL}>
         <PaperProvider theme={theme.lilac}>
           <ThemeProvider theme={theme.lilac.colors}>
-            <Countries />
+            <MainNavigator />
           </ThemeProvider>
         </PaperProvider>
       </ApolloProvider>
