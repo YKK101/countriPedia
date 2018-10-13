@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
-import { Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Background } from '@components'
+import {
+  Background,
+  Error,
+  Loading,
+} from '@components'
 
 const query = gql`
 {
@@ -28,11 +31,11 @@ class Countries extends PureComponent {
 const CountriesContainer = () => (
   <Query query={query}>
     { ({ loading, error, data }) => {
-      if (loading) { return <Text>Loading . . .</Text> }
-      if (error) { return <Text>{`Some error occur !\n${JSON.stringify(error, null, 4)}`}</Text> }
+      if (loading) { return <Loading /> }
+      if (error) { return <Error /> }
       if (data.countries) { return <Countries data={data.countries} /> }
 
-      return <Text>Some error occur !</Text>
+      return <Error />
     }}
   </Query>
 )
