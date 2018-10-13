@@ -1,10 +1,17 @@
+import { DefaultTheme } from 'react-native-paper'
+
 const theme = {
   lilac: {
-    primary: '#CAA0B3',
-    secondary: '#7E7878',
-    background: '#F6F1F0',
-    font: '#645F5C',
-    disabled: '#DBD0D2',
+    ...DefaultTheme,
+    colors: {
+      primary: '#CAA0B3',
+      accent: '#7E7878', // secondary
+      background: '#F6F1F0',
+      surface: 'F6F1F0',
+      text: '#645F5C',
+      placeholder: '#DBD0D2',
+      disabled: '#DBD0D2',
+    },
   },
 }
 
