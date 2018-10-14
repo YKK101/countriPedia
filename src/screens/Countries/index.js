@@ -44,6 +44,10 @@ class Countries extends PureComponent {
           title={item.native}
           description={item.name}
           left={() => this.renderCountryFlag(item.flagCode)}
+          onPress={() => this.props.navigation.navigate({
+            routeName: 'detail',
+            params: { code: item.code, title: item.native }
+          })}
         />
         <SafeAreaView />
       </Fragment>
@@ -75,7 +79,7 @@ class CountriesContainer extends PureComponent {
         { ({ loading, error, data }) => {
           if (loading) { return <Loading /> }
           if (error) { return <Error /> }
-          if (data.countries) { return <Countries data={data.countries} /> }
+          if (data.countries) { return <Countries data={data.countries} navigation={this.props.navigation} /> }
 
           return <Error />
         }}
@@ -91,6 +95,7 @@ Countries.propTypes = {
     native: PropTypes.string.isRequired,
     flagCode: PropTypes.string.isRequired,
   })),
+  navigation: PropTypes.shape().isRequired,
 }
 
 Countries.defaultProps = {

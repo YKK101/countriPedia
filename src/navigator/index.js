@@ -1,10 +1,14 @@
 import { createStackNavigator } from 'react-navigation'
-import { Countries } from '@screens'
+import {
+  Countries,
+  Detail,
+} from '@screens'
 import theme from '@constants/theme'
 
 const MainNavigator = createStackNavigator(
   {
     countries: Countries,
+    detail: Detail,
   }, {
     initialRouteName: 'countries',
     navigationOptions: {
@@ -14,6 +18,8 @@ const MainNavigator = createStackNavigator(
       headerTitleStyle: {
         color: 'white',
       },
+      headerTintColor: 'white',
+      headerBackTitle: null,
     },
   },
 )
