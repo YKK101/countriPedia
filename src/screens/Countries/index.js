@@ -75,8 +75,9 @@ class CountriesContainer extends PureComponent {
   
   render() {
     return (
-      <Query query={query}>
-        { ({ loading, error, data }) => {
+      <Query query={query} notifyOnNetworkStatusChange>
+        { ({ loading, error, data, networkStatus }) => {
+          if (networkStatus === 8) { return <Error title={strings.networkError} /> } // Network Error
           if (loading) { return <Loading /> }
           if (error) { return <Error /> }
           if (data.countries) { return <Countries data={data.countries} navigation={this.props.navigation} /> }
